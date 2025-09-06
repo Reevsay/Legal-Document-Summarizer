@@ -146,9 +146,36 @@ python app.py
 ```
 
 ### Production Deployment
+
+#### Option 1: Direct Python
 ```bash
 uvicorn server:app --host 0.0.0.0 --port 8000
 ```
+
+#### Option 2: Docker
+```bash
+# Build and run with Docker
+docker build -t legal-summarizer .
+docker run -p 8000:8000 legal-summarizer
+```
+
+#### Option 3: Docker Compose
+```bash
+# Run with docker-compose
+docker-compose up -d
+```
+
+#### Option 4: Cloud Deployment
+The application can be easily deployed to:
+- **Heroku**: Use the provided `Dockerfile`
+- **Google Cloud Run**: Containerized deployment
+- **AWS ECS/Fargate**: Container-based deployment
+- **Azure Container Instances**: Quick container deployment
+
+### Environment Variables
+- `BIND_ADDR`: Server bind address (default: 127.0.0.1)
+- `PORT`: Server port (default: 8000)
+- `PYTHONPATH`: Python path for modules
 
 ## 🤝 Contributing
 
