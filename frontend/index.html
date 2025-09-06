@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Legal Summarizer ⚖️</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <h1 class="reveal">Legal Summarizer</h1>
+          <p class="muted reveal">Extractive TF‑IDF and Abstractive BART summaries with insights and exports.</p>
+          <div class="chips reveal">
+            <span class="chip">Fast</span>
+            <span class="chip">Accurate</span>
+            <span class="chip">Secure</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__glow"></div>
+    </header>
+
+    <main class="container">
+      <section class="panel">
+        <div class="panel__left">
+          <h2>Document</h2>
+          <div class="segmented">
+            <button data-input="paste" class="active">Paste</button>
+            <button data-input="upload">Upload</button>
+            <button data-input="sample">Sample</button>
+          </div>
+          <textarea id="doc" placeholder="Paste contract or agreement text…" rows="12"></textarea>
+          <div class="controls">
+            <label>
+              Mode
+              <select id="mode">
+                <option value="extractive">Extractive (TF-IDF)</option>
+                <option value="abstractive">Abstractive (BART)</option>
+                <option value="compare">Compare (Both)</option>
+              </select>
+            </label>
+            <label>
+              Length
+              <select id="length">
+                <option value="short">short</option>
+                <option value="medium" selected>medium</option>
+                <option value="long">long</option>
+              </select>
+            </label>
+            <label>
+              Sentences (extractive)
+              <input type="number" id="sentences" min="1" max="8" value="3" />
+            </label>
+            <button id="run" class="primary">Summarize</button>
+          </div>
+          <div class="upload hidden">
+            <input type="file" id="file" accept=".txt,.pdf,.docx" />
+          </div>
+        </div>
+        <div class="panel__right">
+          <h2>Preview</h2>
+          <div class="preview" id="preview"></div>
+        </div>
+      </section>
+
+      <section class="kpis">
+        <div class="kpi">
+          <div class="kpi__label">Original words</div>
+          <div class="kpi__value" id="kpi-original">0</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">Summary words</div>
+          <div class="kpi__value" id="kpi-summary">0</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">Compression</div>
+          <div class="kpi__value" id="kpi-compression">0%</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">Reading time</div>
+          <div class="kpi__value" id="kpi-readtime">0min</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">Sentences</div>
+          <div class="kpi__value" id="kpi-sentences">0</div>
+        </div>
+      </section>
+
+      <section class="tabs">
+        <div class="tabbar">
+          <button class="tab active" data-tab="summary">Summary</button>
+          <button class="tab" data-tab="visuals">Visuals</button>
+          <button class="tab" data-tab="compare">Compare</button>
+          <button class="tab" data-tab="history">History</button>
+          <button class="tab" data-tab="about">About</button>
+        </div>
+        <div class="tabpanes">
+          <div class="tabpane active" id="tab-summary">
+            <div id="summary"></div>
+            <div class="actions">
+              <button id="download" class="ghost">Download</button>
+            </div>
+          </div>
+          <div class="tabpane" id="tab-visuals">
+            <div class="visuals-grid">
+              <div class="visual-card">
+                <h3>Word Cloud</h3>
+                <div class="wordcloud-container">
+                  <img id="wordcloudImg" alt="Wordcloud" />
+                  <div class="wordcloud-placeholder">
+                    <span>📊</span>
+                    <p>Word cloud will appear here after summarization</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="visual-card">
+                <h3>Text Analysis</h3>
+                <div class="chart-container">
+                  <canvas id="analysisChart"></canvas>
+                </div>
+              </div>
+              
+              <div class="visual-card">
+                <h3>Compression Metrics</h3>
+                <div class="chart-container">
+                  <canvas id="compressionChart"></canvas>
+                </div>
+              </div>
+              
+              <div class="visual-card full-width">
+                <h3>Summary Comparison</h3>
+                <div class="chart-container">
+                  <canvas id="comparisonChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tabpane" id="tab-compare">
+            <div class="twocol">
+              <div>
+                <h3>Extractive</h3>
+                <div id="extractive"></div>
+              </div>
+              <div>
+                <h3>Abstractive</h3>
+                <div id="abstractive"></div>
+              </div>
+            </div>
+          </div>
+          <div class="tabpane" id="tab-history">
+            <div class="actions">
+              <button id="clear-history" class="ghost">Clear History</button>
+            </div>
+            <table id="history"></table>
+          </div>
+          <div class="tabpane" id="tab-about">
+            <div class="about-content">
+              <h3>📊 Legal Summarizer</h3>
+              <p>Advanced document summarization using AI and machine learning techniques.</p>
+              
+              <h4>🧠 Technologies</h4>
+              <ul>
+                <li><strong>Extractive:</strong> TF-IDF sentence scoring with scikit-learn</li>
+                <li><strong>Abstractive:</strong> Facebook BART model via Hugging Face Transformers</li>
+                <li><strong>Visualization:</strong> Chart.js for interactive graphs</li>
+                <li><strong>Backend:</strong> FastAPI with async support</li>
+                <li><strong>Frontend:</strong> Vanilla JavaScript with modern CSS</li>
+              </ul>
+              
+              <h4>📈 Features</h4>
+              <ul>
+                <li>Real-time text analysis and statistics</li>
+                <li>Interactive charts and visualizations</li>
+                <li>Word cloud generation</li>
+                <li>Document upload (.txt, .pdf, .docx)</li>
+                <li>Persistent history tracking</li>
+                <li>Responsive design with dark theme</li>
+              </ul>
+              
+              <h4>🎯 Usage Tips</h4>
+              <ul>
+                <li>Use <strong>Extractive</strong> for quick, sentence-based summaries</li>
+                <li>Use <strong>Abstractive</strong> for AI-generated, fluent summaries</li>
+                <li>Try <strong>Compare</strong> mode to see both approaches</li>
+                <li>Check the <strong>Visuals</strong> tab for insights and analytics</li>
+              </ul>
+              
+              <div class="stats-footer">
+                <p><small>© <span id="year"></span> Legal Summarizer. Built with ❤️ for legal professionals.</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer muted">© <span id="year"></span> Legal Summarizer</footer>
+
+  <script src="/static/script.js"></script>
+  </body>
+</html>

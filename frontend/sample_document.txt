@@ -1,0 +1,15 @@
+This Agreement (the “Agreement”) is made and entered into as of the Effective Date by and between Alpha Corp (the “Disclosing Party”) and Beta LLC (the “Receiving Party”).
+
+1. Confidential Information. “Confidential Information” means all non‑public information disclosed by the Disclosing Party, whether orally or in writing, that is designated as confidential or that reasonably should be understood to be confidential.
+
+2. Use and Non‑Disclosure. The Receiving Party shall (a) use the Confidential Information solely to evaluate or pursue a business relationship with the Disclosing Party, and (b) not disclose the Confidential Information to any third party except to its Representatives who need to know such information and are bound by confidentiality obligations no less protective than those set forth herein.
+
+3. Exclusions. Confidential Information does not include information that: (i) is or becomes generally available to the public through no fault of the Receiving Party; (ii) is rightfully received from a third party without breach of any obligation; (iii) is independently developed by the Receiving Party without use of or reference to the Confidential Information; or (iv) was already known to the Receiving Party prior to disclosure by the Disclosing Party.
+
+4. Compelled Disclosure. If the Receiving Party is required by law, regulation, or court order to disclose any Confidential Information, it may do so provided that it gives the Disclosing Party prompt written notice and cooperates in seeking a protective order.
+
+5. Return or Destruction. Upon the Disclosing Party’s request, the Receiving Party shall promptly return or destroy all Confidential Information, including copies and summaries thereof, and certify such destruction in writing.
+
+6. Term. This Agreement shall remain in effect for three (3) years from the Effective Date. Obligations with respect to trade secrets shall survive for so long as such information remains a trade secret under applicable law.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the Effective Date.
