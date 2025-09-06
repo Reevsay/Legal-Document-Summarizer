@@ -12,10 +12,7 @@ legal-summarizer/
 │   └── sample_document.txt     # Sample document for testing
 ├── output/
 │   ├── Screenshot*.png         # Application screenshots
-├── design/
-│   └── image.png               # Design assets
 ├── .gitignore                  # Git ignore rules
-├── .env                        # Environment variables (optional)
 ├── app.py                      # Main application launcher
 ├── server.py                   # FastAPI server implementation
 ├── summarizer.py               # NLP summarization logic
@@ -29,7 +26,8 @@ legal-summarizer/
 ├── sample_document.txt         # Sample document
 ├── README.md                   # Project documentation
 ├── LICENSE                     # MIT License
-└── CONTRIBUTING.md             # Contribution guidelines
+├── CONTRIBUTING.md             # Contribution guidelines
+└── PROJECT_STRUCTURE.md        # This file
 ```
 
 ## Key Components
